@@ -5,6 +5,8 @@
 # DemoVideo
 [![Video Label](http://img.youtube.com/vi/lFgAhAfzUBI/0.jpg)](https://youtu.be/lFgAhAfzUBI)
 
+* 위 이미지 클릭 시 데모 비디오 영상으로 연결됩니다.
+
 
 # Architecture
 <img src="./images/architecture.png" width=500>
