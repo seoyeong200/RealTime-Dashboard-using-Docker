@@ -1,0 +1,73 @@
+main {
+  font-family: "Roboto";
+  font-size: 0.8em;
+  padding: 2em 5;
+}
+
+main .lx-column1 {
+  float: left;
+  width: 50%;
+}
+
+main .lx-column2 {
+  float: right;
+  width: 50%;
+}
+
+main .lx-column1 details {
+  color: black;
+  background-color: hsl(24, 64%, 57%);
+  padding: 0.2em;
+  margin: 0.2em;
+  border-radius: 1cm;
+}
+main .lx-column1 details summary {
+  padding: 0.5em;
+  border-radius: 1em;
+  outline: none;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+}
+main .lx-column1 details summary .lx-avatar {
+  border-radius: 50%;
+  overflow: hidden;
+}
+main .lx-column1 details summary::-webkit-details-marker {
+  display: none;
+}
+main .lx-column1 details[open], main .lx-column1 details:hover {
+  color: black;
+  background-color: rgb(218, 109, 37);
+}
+
+main .lx-column2 details {
+  color: black;
+  background-color: hsl(209, 51%, 58%);
+  padding: 0.2em;
+  margin: 0.2em;
+  border-radius: 1cm;
+}
+main .lx-column2 details summary {
+  padding: 0.5em;
+  border-radius: 1em;
+  outline: none;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+}
+main .lx-column2 details summary .lx-avatar {
+  border-radius: 50%;
+  overflow: hidden;
+}
+main .lx-column2 details summary::-webkit-details-marker {
+  display: none;
+}
+main .lx-column2 details[open], main .lx-column2 details:hover {
+  color: black;
+  background-color: rgb(36, 98, 134);
+}
+
+

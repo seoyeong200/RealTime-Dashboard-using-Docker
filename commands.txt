@@ -1,0 +1,27 @@
+
+
+
+
+
+
+
+cd /Users/seoyeong/Documents/My_GitHub/RealTimeDashboard
+
+/usr/local/bin/python ./twitter_nct.py
+
+docker-compose exec kafka sh 
+$KAFKA_HOME/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic rawdata
+
+docker-compose logs notebook
+
+$KAFKA_HOME/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic processed
+
+docker-compose exec mongodb /bin/bash
+
+mongo -u root -p 123456 --authenticationDatabase tweetDB
+
+use tweetDB
+
+db.test.find()
+
+nodemon -L src/consumer.js

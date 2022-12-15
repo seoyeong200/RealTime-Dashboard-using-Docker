@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>socket.io - chart.js</title>
+  
+  <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="script2.js"></script>
+</head>
+<body>
+  <h1>Realtime likes count</h1>
+  <canvas id="chart" width="400" height="150"></canvas>
+
+  <h1>
+    Realtime Streamed Tweet
+  </h1>
+  <main>
+  <section>    
+    <div class="lx-container-80">
+      <div class="lx-row is-vstart">
+        <div class="lx-column1"><div id="g1"></div></div>
+        <div class="lx-column2"><div id="g2"></div></div>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <script type="text/javascript "src="/socket.io/socket.io.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+  <script type="text/javascript">
+    var socket = io.connect()
+    var ctx = document.getElementById('chart').getContext('2d')
+    var data = {
+        labels: [0],
+        datasets: [{
+            data: [0],
+            label: 'Blackpink',
+            backgroundColor: '#ff6600',
+            fill: false,
+            borderColor: '#ff6600'
+        },{
+            data: [0],
+            label: 'BTS',
+            backgroundColor: '#0099ff',
+            fill: false,
+            borderColor: '#0099ff'
+        }]
+    }
+    var optionsAnimations = { animation: false }
+    var chart = new Chart(ctx, {
+        type: 'line',
+        data: data,
+        options: optionsAnimations
+    })
+    socket.on('event', function (value) {
+        parsed = JSON.parse(value)
+        if (parsed.favorite_count > 10000) {
+          likes = 10000
+        } else{
+          likes = parsed.favorite_count
+        }
+        var length = data.labels.length
+        if (length >= 20) {
+            data.datasets[0].data.shift()
+            data.labels.shift()
+        }
+
+        data.labels.push(moment().format('HH:mm:ss'))
+        // data.labels.push(value.time)
+        if (parsed.group === 'blackpink'){
+            data.datasets[0].data.push(likes)
+        } else{
+            likes = likes*(-1)
+            data.datasets[1].data.push(likes)
+        }
+        chart.update()
+    })
+  </script>
+
+
+</body>
+</html>
